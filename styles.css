@@ -5,7 +5,7 @@
   body {
     margin: 0;
     font-family: system-ui, sans-serif;
-    color: rgb(238, 224, 224);
+    color: rgb(8, 3, 3);
     background-color: #95bb98;
   }
   
@@ -16,8 +16,8 @@
     justify-content: center;
     padding: 0.5rem;
     gap: 0.5rem;
-    border-bottom: solid 1px #80AF81;
-    background-color: #eee;
+    border-bottom: solid 1px #aaa;
+    background-color: #80AF81;
   }
   
   nav a {
