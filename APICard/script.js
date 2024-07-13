@@ -12,27 +12,24 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function fetchGitHubUser(username) {
         var url = `https://api.github.com/users/${username}`;
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", url, true);
 
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                var data = JSON.parse(xhr.responseText);
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('User not found');
+                }
+                return response.json();
+            })
+            .then(data => {
                 document.getElementById('user-avatar').src = data.avatar_url;
                 document.getElementById('user-name').innerText = data.name || data.login;
                 document.getElementById('user-bio').innerText = data.bio || 'No bio available';
                 document.getElementById('user-location').innerText = data.location || 'Location not available';
                 document.getElementById('user-card').style.display = 'block';
-            } else {
-                console.error('Error fetching user data');
+            })
+            .catch(error => {
+                console.error('Error fetching user data:', error);
                 alert('User not found');
-            }
-        };
-
-        xhr.onerror = function() {
-            console.error('Request error...');
-        };
-
-        xhr.send();
+            });
     }
 });
